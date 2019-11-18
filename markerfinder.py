@@ -15,7 +15,7 @@ from Bio.SeqRecord import SeqRecord
 from Bio.Alphabet import IUPAC
 
 working_dir = sys.argv[1]
-speci_db = "hmm/RNAP.full.hmm"
+hmm_db = sys.argv[2] #"hmm/RNAP.full.hmm"
 #speci_db = "hmm/all.hmm"
 
 #cog_set = ['COG0085', 'COG0086', 'COG0202']
@@ -35,7 +35,7 @@ combined_output = open("output.txt", "w")
 #combined_output.write("name\tprotein\tacc\tspecies\tdomain\tphylum\tfamily\tgenus\thit\tcategory\tlength\tscore\talign_length\tnum_hits\tall_proteins\talignment_locations\n")
 #	test.close()
 
-merged_proteins = open("RNAP.faa", "w")
+merged_proteins = open("markerfinder_proteins.faa", "w")
 final_proteins = []
 
 #################################################################
@@ -50,9 +50,10 @@ def hmm_launcher(folder):
 			speci_dom_output = os.path.join(folder, dom_output)
 
 			# run against the RNAP models
-			cmd = "hmmsearch --cpu 16 --cut_tc --domtblout "+ speci_dom_output +" "+ speci_db + " " + input_file
+			cmd = "hmmsearch --cpu 16 --domtblout "+ speci_dom_output +" "+ hmm_db + " " + input_file
+			print cmd
 			cmd2 = shlex.split(cmd)
-			#subprocess.call(cmd2, stdout=open("hmm.out", 'w'), stderr=open("error_file.txt", 'a'))
+			subprocess.call(cmd2, stdout=open("hmm.out", 'w'), stderr=open("error_file.txt", 'a'))
 
 # end
 hmm_launcher(working_dir)
@@ -209,7 +210,8 @@ def parse_domout(path_to_parsed_hmmfile, acc, protein_dict, cog_name):
 	return main_hit, protein2cog, protein2acc, protein2score, protein2length, protein2category, protein2coords, protein2align_length
 
 merged = open("markerfinder_out.tsv", "w")
-cog_out = open("cogs.txt", "w")
+merged.write("new_protein_name\toriginal_protein_name\tgenome_name\thit\thit_type\tprotein_length\thmm_score\thmm_alignlength\tnum_proteins_merged\tproteins_merged\tmerged_proteins_hit_coords\n")
+cog_out = open("markerfinder_cogs.txt", "w")
 for i in os.listdir(working_dir):
 	if i.endswith(".faa"):
 
