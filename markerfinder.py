@@ -42,16 +42,17 @@ final_proteins = []
 ############# define hmm launcher function ######################
 #################################################################
 def hmm_launcher(folder):
+	print "Running HMMER3..."
 	for files in os.listdir(folder):
 		if files.endswith(".faa"):
-			print files
+			#print files
 			input_file = os.path.join(folder, files)	
 			dom_output = re.sub(".faa", ".domout", files)
 			speci_dom_output = os.path.join(folder, dom_output)
 
 			# run against the RNAP models
 			cmd = "hmmsearch --cpu 16 --domtblout "+ speci_dom_output +" "+ hmm_db + " " + input_file
-			print cmd
+			#print cmd
 			cmd2 = shlex.split(cmd)
 			subprocess.call(cmd2, stdout=open("hmm.out", 'w'), stderr=open("error_file.txt", 'a'))
 
@@ -229,7 +230,7 @@ for i in os.listdir(working_dir):
 		# parse domout file and get protein hits and coordinates
 		done = {}
 		for cog in cog_set:
-			print cog
+			#print cog
 			protein2dups = defaultdict(lambda:"single_besthit")
 
 			rnap, protein2cog, protein2acc, protein2score, protein2length, protein2category, protein2coords, protein2align_length = parse_domout(parsed, acc, seq_dict, cog)
@@ -292,14 +293,15 @@ for i in os.listdir(working_dir):
 						hit = items[1]
 
 						protlist = prot2protlist[protein]
-						loc_list = [str(loc) for loc in prot2loc[protein]]
+						loc_list = [float(loc) for loc in prot2loc[protein]]
 						index_list = [i[0] for i in sorted(enumerate(loc_list), key=lambda x:x[1])]
 						sorted_loc_list = [i[1] for i in sorted(enumerate(loc_list), key=lambda x:x[1])]
 
 						sorted_prot_list = [protlist[index] for index in index_list]
 						prot_str = ";".join(sorted_prot_list)
 
-						loc_str = ";".join(sorted_loc_list)
+						#loc_str = ";".join(sorted_loc_list)
+						loc_str = ";".join([str(n) for n in sorted_loc_list])
 						acc = protein2acc[protein]
 						final_name = re.sub("_", ".", acc) +"_"+ hit
 
@@ -307,7 +309,7 @@ for i in os.listdir(working_dir):
 
 						if len(sorted_prot_list) > 1:
 							newrecord = SeqRecord(Seq("", IUPAC.protein), id=final_name, name=protein+" JOINED", description=protein2acc[protein] +" JOINED PROTEIN")
-							print newrecord.name
+							print "Joining the following proteins: " +" ".join(sorted_prot_list) +" that both have hits to: "+ cog   #newrecord.name
 							for fragment in sorted_prot_list:
 								subrecord = seq_dict[fragment]
 								subseq = subrecord.seq
