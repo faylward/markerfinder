@@ -15,18 +15,10 @@ from Bio.SeqRecord import SeqRecord
 from Bio.Alphabet import IUPAC
 
 working_dir = sys.argv[1]
-hmm_db = sys.argv[2] #"hmm/RNAP.full.hmm"
+hmm_db = hmm/embl.hmm #"hmm/RNAP.full.hmm"
 #speci_db = "hmm/all.hmm"
 
-#cog_set = ['COG0085', 'COG0086', 'COG0202']
-#cog_set = ["PF00164.24", "PF00177.20", "PF00181.22", "PF00189.19", "PF00203.20", "PF00237.18", "PF00238.18", "PF00252.17", "PF00281.18", "PF00297.21", "PF00298.18", "PF00312.21", "PF00333.19", "PF00338.21", "PF00366.19", "PF00380.18", "PF00410.18", "PF00411.18", "PF00416.21", "PF00466.19", "PF00573.21", "PF00673.20", "PF00687.20", "PF00861.21", "PF03719.14", "PF03946.13", "PF03947.17"]
-#cog_set = ["Ribosomal_L3", "Ribosomal_L4", "Ribosom_S12_S23", "Ribosomal_S11", "Ribosomal_S13", "Ribosomal_L1", "Ribosomal_L2_C", "Ribosomal_S7", "Ribosomal_L16", "Ribosomal_L14", "Ribosomal_L22", "Ribosomal_S19", "Ribosomal_S9", "Ribosomal_S10", "Ribosomal_S8", "Ribosomal_S17", "Ribosomal_L10", "Ribosomal_S5", "Ribosomal_L11", "Ribosomal_L5_C", "Ribosomal_S3_C", "Ribosomal_S15", "Ribosomal_L18p"]
-
-rnap_set = ['COG0085', 'COG0086', 'COG0202']
 cog_set = ["COG0012", "COG0016", "COG0018", "COG0048", "COG0049", "COG0052", "COG0080", "COG0081", "COG0085", "COG0086", "COG0087", "COG0088", "COG0090", "COG0091", "COG0092", "COG0093", "COG0094", "COG0096", "COG0097", "COG0098", "COG0099", "COG0100", "COG0102", "COG0103", "COG0124", "COG0172", "COG0184", "COG0185", "COG0186", "COG0197", "COG0200", "COG0201", "COG0202", "COG0215", "COG0256", "COG0495", "COG0522", "COG0525", "COG0533", "COG0541", "COG0552"]
-ribosomal_set = ["COG0012", "COG0048", "COG0049", "COG0052", "COG0080", "COG0081", "COG0087", "COG0088", "COG0090", "COG0091", "COG0092", "COG0093", "COG0094", "COG0096", "COG0097", "COG0098", "COG0099", "COG0100", "COG0102", "COG0103", "COG0184", "COG0185", "COG0186", "COG0197", "COG0200", "COG0256", "COG0522"]
-
-
 score_dict = {"COG0012":float(210), "COG0016":float(240), "COG0018":float(340), "COG0048":float(100), "COG0049":float(120), "COG0052":float(140), "COG0080":float(90), "COG0081":float(130), "COG0085":float(200), "COG0086":float(200), "COG0087":float(120), "COG0088":float(110), "COG0090":float(180), "COG0091":float(80), "COG0092":float(120), "COG0093":float(80), "COG0094":float(110), "COG0096":float(80), "COG0097":float(100), "COG0098":float(140), "COG0099":float(120), "COG0100":float(80), "COG0102":float(100), "COG0103":float(80), "COG0124":float(320), "COG0172":float(170), "COG0184":float(60), "COG0185":float(70), "COG0186":float(80), "COG0197":float(70), "COG0200":float(60), "COG0201":float(210), "COG0202":float(80), "COG0215":float(400), "COG0256":float(70), "COG0495":float(450), "COG0522":float(80), "COG0525":float(740), "COG0533":float(300), "COG0541":float(450), "COG0552":float(220), "COG0086":float(300)}
 
 #for i in cog_set:
