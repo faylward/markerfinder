@@ -19,7 +19,7 @@ markerfinder_proteins.faa  This is the protein file with all proteins with best 
 
 raw_output.txt          This is the parsed raw HMMER3 output. It can be used as a reference for debugging. 
 
-markerfinder_cogs.txt                This is a cogs-formatted file that can be used as input for an ETE3 species tree workflow 
+markerfinder_cogs.txt                This is a cogs-formatted file that, together with the marerfinder_proteins.faa file, can be used as input for an ETE3 species tree workflow 
 (http://etetoolkit.org/documentation/ete-build/).
 
 
