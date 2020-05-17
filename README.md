@@ -13,13 +13,13 @@ For questions or comments please contact Frank Aylward at faylward at vt.edu
 ### Output
 markerfinder.py provides several output files:
 
-full_output.txt         This is the main tab-delimited output file that provides the annotation results. 
+markerfinder_out.tsv         This is a tab-delimited output file that provides the annotation results. 
 
-markerfinder.faa  This is the protein file with all proteins with best hits to the HMMs. Proteins are re-named to incorporate their annotation.
+markerfinder_proteins.faa  This is the protein file with all proteins with best hits to the HMMs. Proteins are re-named to incorporate their annotation.
 
 raw_output.txt          This is the parsed raw HMMER3 output. It can be used as a reference for debugging. 
 
-cogs.txt                This is a cogs-formatted file that can be used as input for an ETE3 species tree workflow 
+markerfinder_cogs.txt                This is a cogs-formatted file that can be used as input for an ETE3 species tree workflow 
 (http://etetoolkit.org/documentation/ete-build/).
 
 
