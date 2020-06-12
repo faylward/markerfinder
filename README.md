@@ -43,7 +43,7 @@ testproject.cogs.txt                This is a cogs-formatted file that, together
 
 
 
-If you want to make a concatenated alignment you have two main options- 1) take the output files from markerfinder.py and use them as input for the ETE3 toolkit, or 2) use the get_concatenated_alignment.py script to align and concatenate the marker proteins found with markerfinder.py. 
+If you want to make a concatenated alignment you have two main options- 1) take the output files from markerfinder.py and use them as input for the ETE3 toolkit, or 2) use the get_alignment.py script to align and concatenate the marker proteins found with markerfinder.py. 
 
 get_alignment.py requires Clustal Omega in your PATH.
 
