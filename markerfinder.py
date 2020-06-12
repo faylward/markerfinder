@@ -31,7 +31,7 @@ def hmm_launcher(folder):
 			cmd = "hmmsearch --cpu 16 --domtblout "+ speci_dom_output +" "+ hmm_db + " " + input_file
 			#print cmd
 			cmd2 = shlex.split(cmd)
-		#	subprocess.call(cmd2, stdout=open("hmm.out", 'w'), stderr=open("error_file.txt", 'a'))
+			subprocess.call(cmd2, stdout=open("hmm.out", 'w'), stderr=open("error_file.txt", 'a'))
 
 # end
 
@@ -208,7 +208,7 @@ def run_program(input, project, database, cpus):
 	cog_out = open(project+".cogs.txt", "w")
 
 	hmm_launcher(input)
-	speci_df = hmm_parser(input, ".domout", "all_hmmout.txt")
+	hmm_parser(input, ".domout", "all_hmmout.txt")
 
 	for i in os.listdir(input):
 		if i.endswith(".faa"):
