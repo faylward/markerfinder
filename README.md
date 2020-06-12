@@ -41,7 +41,7 @@ testproject.cogs.txt                This is a cogs-formatted file that, together
 (http://etetoolkit.org/documentation/ete-build/).
 
 
-
+#### to continue on and make a concatenated alignment
 
 If you want to make a concatenated alignment you have two main options- 1) take the output files from markerfinder.py and use them as input for the ETE3 toolkit, or 2) use the get_alignment.py script to align and concatenate the marker proteins found with markerfinder.py. 
 
@@ -49,9 +49,10 @@ get_alignment.py requires Clustal Omega in your PATH.
 
 #### Example usage: python get_alignment.py testproject.proteins.faa testproject.cogs.txt concat_alignment.aln
 
-This will create the concat_alignment.aln file, which is a concatented alignment of all markers used by markerfinder.py. This script will also create a folder called "alignments" with the individually aligned markers.
+This will create the concat_alignment.aln file, which is a concatented alignment of all markers used by markerfinder.py. Note that this alignment is not trimmed in any way, so you probably want to do that afterwards using trimAl or a similar program. This script will also create a folder called "alignments" with the individually aligned markers, in case you want to inspect those alignments. If genes are missing, in the case of incomplete genomes, the protein sequence is replaced with a string of Xs in that portion of the alignment.  
 
 
+#### starting from nucleotide files
 If you are starting this whole process with nucleotide files you can predict proteins first with the prodigal_launcher.py script. This is just a simple script that goes through a folder of .fna or .fa nucleotide fasta files and predicts proteins. 
 
 #### Example usage: python prodigal_launcher.py nucl_folder prot_folder
