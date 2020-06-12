@@ -11,8 +11,11 @@ The program will search for fragmented RNA Polymerase subunits and join them in 
 There are options that allow for slightly different marker gene sets to be used. 
 
 all: all 40 marker genes
+
 ribo: only 27 ribosomal proteins
+
 rnap: only 3 RNAP subunits
+
 ribo_rnap: 27 ribosomal proteins and 3 RNAP subunits
 
 
