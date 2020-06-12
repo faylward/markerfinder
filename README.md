@@ -47,8 +47,13 @@ If you want to make a concatenated alignment you have two main options- 1) take 
 
 get_alignment.py requires Clustal Omega in your PATH.
 
-#### Example usage 2: python get_alignment.py testproject.proteins.faa testproject.cogs.txt concat_alignment.aln
+#### Example usage: python get_alignment.py testproject.proteins.faa testproject.cogs.txt concat_alignment.aln
 
 This will create the concat_alignment.aln file, which is a concatented alignment of all markers used by markerfinder.py. This script will also create a folder called "alignments" with the individually aligned markers.
+
+
+If you are starting this whole process with nucleotide files you can predict proteins first with the prodigal_launcher.py script. This is just a simple script that goes through a folder of .fna or .fa nucleotide fasta files and predicts proteins. 
+
+#### Example usage: python prodigal_launcher.py nucl_folder prot_folder
 
 
