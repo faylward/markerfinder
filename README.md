@@ -6,7 +6,7 @@ This script will search a file of proteins against a set of 40 curated Hidden Ma
 The program assumes protein IDs are provided in the Prodigal format (i.e., contigname_1, contigname_2, etc). 
 The program requires HMMER3 (in your PATH) and the SeqIO package of Biopython. 
 
-The program will search for fragmented RNA Polymerase subunits and join them in silico for concatenated alignments. Proteins are only joined if they have non-overlapping alignments to the COG0085 and COG0086 HMMs. 
+The program will search for fragmented RNA Polymerase subunits and join them in silico for concatenated alignments. These genes are sometimes fragmented in cyanobacteria, thermophilic archaea, and other microbial lineages, which can cause problems for proper annotation and incorporation into concatenated alignments. Proteins are only joined if they are encoded on the same contig/replicon and have non-overlapping HMMER alignments to the COG0085 or COG0086 HMMs. 
 
 There are options that allow for slightly different marker gene sets to be used. 
 
