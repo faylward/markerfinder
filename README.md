@@ -19,16 +19,16 @@ rnap: only 3 RNAP subunits
 ribo_rnap: 27 ribosomal proteins and 3 RNAP subunits
 
 
-### Example usage 1: python markerfinder.py -i <directory of protein .faa files> -p testproject -t 2
+#### Example usage 1: python markerfinder.py -i <directory of protein .faa files> -p testproject -t 2
 
 This will use 2 threads and use all 40 marker genes
 
-### Example usage 2: python markerfinder.py -i <directory of protein .faa files> -p testproject -t 2 -db ribo_rnap
+#### Example usage 2: python markerfinder.py -i <directory of protein .faa files> -p testproject -t 2 -db ribo_rnap
 
 This will use 2 threads and use only 27 ribosomal proteins and 3 RNAP subunits
 
 
-### Output files
+#### Output files
 markerfinder.py provides several output files:
 
 testproject.summary.tsv         This is a tab-delimited output file that provides the annotation results. 
