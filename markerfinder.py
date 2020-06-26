@@ -194,10 +194,10 @@ def run_program(input, project, database, cpus):
 		print("Using the RNAP marker set")
 	elif database == "ribo":
 		cog_set = ["COG0012", "COG0048", "COG0049", "COG0052", "COG0080", "COG0081", "COG0087", "COG0088", "COG0090", "COG0091", "COG0092", "COG0093", "COG0094", "COG0096", "COG0097", "COG0098", "COG0099", "COG0100", "COG0102", "COG0103", "COG0184", "COG0185", "COG0186", "COG0197", "COG0200", "COG0256", "COG0522"] # 27 ribosomal proteins
-		print("Using the RNAP and ribosomal marker set")
-	elif database == "rnap_ribo":
-		cog_set = ["COG0012", "COG0048", "COG0049", "COG0052", "COG0080", "COG0081", "COG0087", "COG0088", "COG0090", "COG0091", "COG0092", "COG0093", "COG0094", "COG0096", "COG0097", "COG0098", "COG0099", "COG0100", "COG0102", "COG0103", "COG0184", "COG0185", "COG0186", "COG0197", "COG0200", "COG0256", "COG0522", "COG0085", "COG0086", "COG0202"] # 27 ribosomal proteins and 3 RNAP subunits
 		print("Using the ribosomal marker set")
+	elif database == "ribo_rnap":
+		cog_set = ["COG0012", "COG0048", "COG0049", "COG0052", "COG0080", "COG0081", "COG0087", "COG0088", "COG0090", "COG0091", "COG0092", "COG0093", "COG0094", "COG0096", "COG0097", "COG0098", "COG0099", "COG0100", "COG0102", "COG0103", "COG0184", "COG0185", "COG0186", "COG0197", "COG0200", "COG0256", "COG0522", "COG0085", "COG0086", "COG0202"] # 27 ribosomal proteins and 3 RNAP subunits
+		print("Using the RNAP and ribosomal marker set")
 	else:
 		cog_set = ["COG0012", "COG0016", "COG0018", "COG0048", "COG0049", "COG0052", "COG0080", "COG0081", "COG0085", "COG0086", "COG0087", "COG0088", "COG0090", "COG0091", "COG0092", "COG0093", "COG0094", "COG0096", "COG0097", "COG0098", "COG0099", "COG0100", "COG0102", "COG0103", "COG0124", "COG0172", "COG0184", "COG0185", "COG0186", "COG0197", "COG0200", "COG0201", "COG0202", "COG0215", "COG0256", "COG0495", "COG0522", "COG0525", "COG0533", "COG0541", "COG0552"] # all 40 proteins
 		print("Using the full 40-protein marker set")
