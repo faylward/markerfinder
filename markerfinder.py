@@ -18,7 +18,7 @@ final_proteins = []
 #################################################################
 ############# define hmm launcher function ######################
 #################################################################
-def hmm_launcher(folder):
+def hmm_launcher(folder, cpus):
 	print "Running HMMER3..."
 	for files in os.listdir(folder):
 		if files.endswith(".faa"):
@@ -28,7 +28,7 @@ def hmm_launcher(folder):
 			speci_dom_output = os.path.join(folder, dom_output)
 
 			# run against the RNAP models
-			cmd = "hmmsearch --cpu 16 --domtblout "+ speci_dom_output +" "+ hmm_db + " " + input_file
+			cmd = "hmmsearch --cpu %s --domtblout %s %s %s"%(cpus, speci_dom_output, hmm_db, input_file)
 			#print cmd
 			cmd2 = shlex.split(cmd)
 			subprocess.call(cmd2, stdout=open("hmm.out", 'w'), stderr=open("error_file.txt", 'a'))
@@ -207,7 +207,7 @@ def run_program(input, project, database, cpus):
 	merged.write("new_protein_name\toriginal_protein_name\tgenome_name\thit\thit_type\tprotein_length\thmm_score\thmm_alignlength\tnum_proteins_merged\tproteins_merged\tmerged_proteins_hit_coords\n")
 	cog_out = open(project+".cogs.txt", "w")
 
-	hmm_launcher(input)
+	hmm_launcher(input, cpus)
 	hmm_parser(input, ".domout", "all_hmmout.txt")
 
 	for i in os.listdir(input):
