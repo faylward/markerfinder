@@ -19,7 +19,7 @@ final_proteins = []
 ############# define hmm launcher function ######################
 #################################################################
 def hmm_launcher(folder):
-	print "Running HMMER3..."
+	print("Running HMMER3...")
 	for files in os.listdir(folder):
 		if files.endswith(".faa"):
 			#print files
