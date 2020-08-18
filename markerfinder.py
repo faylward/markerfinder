@@ -6,8 +6,12 @@ from Bio import SeqIO
 from Bio.Seq import Seq
 from Bio.SeqRecord import SeqRecord
 from Bio.Alphabet import IUPAC
+import inspect
 
-hmm_db = "hmm/embl.hmm" #"hmm/RNAP.full.hmm"
+def path_to_know_finction():
+	return 
+
+hmm_db = os.path.dirname(os.path.abspath(inspect.getfile(path_to_know_finction)))+"/hmm/embl.hmm" #"hmm/RNAP.full.hmm"
 #speci_db = "hmm/all.hmm"
 
 score_dict = {"COG0012":float(210), "COG0016":float(240), "COG0018":float(340), "COG0048":float(100), "COG0049":float(120), "COG0052":float(140), "COG0080":float(90), "COG0081":float(130), "COG0085":float(200), "COG0086":float(200), "COG0087":float(120), "COG0088":float(110), "COG0090":float(180), "COG0091":float(80), "COG0092":float(120), "COG0093":float(80), "COG0094":float(110), "COG0096":float(80), "COG0097":float(100), "COG0098":float(140), "COG0099":float(120), "COG0100":float(80), "COG0102":float(100), "COG0103":float(80), "COG0124":float(320), "COG0172":float(170), "COG0184":float(60), "COG0185":float(70), "COG0186":float(80), "COG0197":float(70), "COG0200":float(60), "COG0201":float(210), "COG0202":float(80), "COG0215":float(400), "COG0256":float(70), "COG0495":float(450), "COG0522":float(80), "COG0525":float(740), "COG0533":float(300), "COG0541":float(450), "COG0552":float(220), "COG0086":float(300)}
