@@ -19,20 +19,63 @@ rnap: only 3 RNAP subunits
 ribo_rnap: 27 ribosomal proteins and 3 RNAP subunits
 
 
-#### Example usage 1: python markerfinder.py -i <directory of protein .faa files> -p testproject -t 2
+### MINIMAL USAGE: python ncldv_markersearch.py -i <directory of protein .faa files> -n project_name
 
-This will use 2 threads and use all 40 marker genes
+### Options
 
-#### Example usage 2: python markerfinder.py -i <directory of protein .faa files> -p testproject -t 2 -db ribo_rnap
+**-p, --proximity**
+The proximity of genes to merge is the number of genes up- and down-stream of the initial hit that the program will search for additional hits to merge. This is only done for the COG0085 and COG0086 markers (the multimeric RNAP subunits). Hits outside this range will be considered independent hits. Default is 100.
 
-This will use 2 threads and use only 27 ribosomal proteins and 3 RNAP subunits
+**-t, --cpus**
+How many CPUs/threads to use for the hmmsearch and clustal steps
+
+**-m, --markerset**
+Markers to use. Must be comma-separated list of the following: A32,D5,SFII,mcp,mRNAc,PolB,RNAPL,RNAPS,RNR,VLTF3. The default is A32,mcp,SFII,PolB,VLTF3.
+
+**-r, --redo**
+If you have already run script and you want to re-run it with different parameters, you can use the -r flag to avoid re-running HMMER (this saves a bit of time if you're running multiple times)
+
+**-c, --concat**
+If this option is specified the script will also output a concatenated alignment of the chose marker genes (FASTA format, one entry per taxa, each marker gene aligned separately with Clustal Omega)
+
+**-a, --allhits**
+If this option is specified then all hits marker genes (that are above the predefined bit score thresholds) will be output. This option is not compatible with the -c option. This can be useful if you want to see if certain marker genes are present in multiple copies. 
 
 
-#### Output files
-markerfinder.py provides several output files:
 
-testproject.summary.tsv         This is a tab-delimited output file that provides the annotation results. 
+### Output files
+ncldv_markersearch.py provides several output files, all with the prefix designated with the -n option:
 
+*full_output.txt         This is the main tab-delimited output file that provides the annotation results. 
+
+*.faa  This is the protein file with all merged and unmerged proteins with best hits to the HMMs. Proteins are re-named to accommodate potential merged proteins. 
+
+*raw_output.txt          This is the parsed raw HMMER3 output (no marker gene joining). It can be used as a reference for debugging, but you can usually ignore it. 
+
+*.cogs.txt                This is a cogs-formatted file, in the same general format used by the ETE3 toolkit, and it's used as a reference for producing the concatenated alignment. You can also use it with the *.faa output file if you want to make a tree with the ETE3 toolkit instead (http://etetoolkit.org/documentation/ete-build/).. 
+
+*.table.tsv              This is an occurrence table for the number of marker genes that were identified for each file in the input folder. Note that if several query proteins with hits to the same marker gene were joined they only counted once. Also, this table will only show multiple hits if the -a option is used, otherwise only best hits are recorded. 
+
+*.concat.aln           If the -c option is chosen then a concatenated alignment is produced. This is FASTA formatted, each marker gene is aligned separately, and strings of X are used to fill spaces left by missing marker genes. This alignment is not trimmed in any way, so you may wish to process it further before phylogenetic analysis. 
+
+log_file.txt          This is just a log file of some of the outputs produced by hmmsearch and clustal that is used for debugging purposes. 
+
+In addition, for each .faa file in the input folder a .domout and .domout.parsed file is created. These are used if you re-run this tool with the -r flag. 
+
+
+### Examples
+
+To get the best hits to a set of ribosomal markers only using 4 threads. 
+>python ncldv_markersearch.py -i test_input -n test_run -t 4 -m ribo
+
+To get all hits, including "secondary hits", or second-best hits:
+>python ncldv_markersearch.py -i test_input -n test_run -t 4 -a
+
+To get best hits and also generate a concatenated alignment: 
+>python ncldv_markersearch.py -i test_input -n test_run -t 4 -c
+
+
+### Output files
 testproject.proteins.faa  This is the protein file with all proteins with best hits to the HMMs. Proteins are re-named to incorporate their annotation.
 
 raw_output.txt          This is the parsed raw HMMER3 output. It can be used as a reference for debugging. 
@@ -40,21 +83,5 @@ raw_output.txt          This is the parsed raw HMMER3 output. It can be used as 
 testproject.cogs.txt                This is a cogs-formatted file that, together with the marerfinder_proteins.faa file, can be used as input for an ETE3 species tree workflow 
 (http://etetoolkit.org/documentation/ete-build/).
 
-
-#### to continue on and make a concatenated alignment
-
-If you want to make a concatenated alignment you have two main options- 1) take the output files from markerfinder.py and use them as input for the ETE3 toolkit, or 2) use the get_alignment.py script to align and concatenate the marker proteins found with markerfinder.py. 
-
-get_alignment.py requires Clustal Omega in your PATH.
-
-#### Example usage: python get_alignment.py testproject.proteins.faa testproject.cogs.txt concat_alignment.aln
-
-This will create the concat_alignment.aln file, which is a concatented alignment of all markers used by markerfinder.py. Note that this alignment is not trimmed in any way, so you probably want to do that afterwards using trimAl or a similar program. This script will also create a folder called "alignments" with the individually aligned markers, in case you want to inspect those alignments. If genes are missing, in the case of incomplete genomes, the protein sequence is replaced with a string of Xs in that portion of the alignment.  
-
-
-#### starting from nucleotide files
-If you are starting this whole process with nucleotide files you can predict proteins first with the prodigal_launcher.py script. This is just a simple script that goes through a folder of .fna or .fa nucleotide fasta files and predicts proteins. 
-
-#### Example usage: python prodigal_launcher.py nucl_folder prot_folder
 
 
