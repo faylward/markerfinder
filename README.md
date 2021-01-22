@@ -19,7 +19,7 @@ rnap: only 3 RNAP subunits
 ribo_rnap: 27 ribosomal proteins and 3 RNAP subunits
 
 
-### MINIMAL USAGE: python ncldv_markersearch.py -i <directory of protein .faa files> -n project_name
+### MINIMAL USAGE: python markerfinder.py -i <directory of protein .faa files> -n project_name
 
 ### Options
 
