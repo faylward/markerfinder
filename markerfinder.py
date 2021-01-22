@@ -574,7 +574,7 @@ def main(argv=None):
 	args_parser = argparse.ArgumentParser(formatter_class=argparse.RawDescriptionHelpFormatter, description="Markerfinder: A script for identifying phylogenetic marker genes in bacteria and archaea and generating concatenated alignments \nFrank O. Aylward, Virginia Tech Department of Biological Sciences <faylward at vt dot edu>", epilog='*******************************************************************\n\n*******************************************************************')
 	args_parser.add_argument('-i', '--input', required=True, help='Input folder of FASTA file (ending in .fna, .fa, or .fasta)')
 	args_parser.add_argument('-n', '--name', required=True, help='project name prefix for output files')
-	args_parser.add_argument('-p', '--proximity', required=False, default=int(10), help='number of genes to look up- and downstream of hits to join genes (default=10)')
+	args_parser.add_argument('-p', '--proximity', required=False, default=int(100), help='number of genes to look up- and downstream of hits to join genes (default=100)')
 	args_parser.add_argument('-t', '--cpus', required=False, default=str(1), help='number of cpus to use for the HMMER3 search')
 	args_parser.add_argument('-m', '--markerset', required=False, default=str('ribo_rnap'), help='HMM database to use. Options are "all", "ribo", "rnap" or "ribo_rnap". See README for details')
 	args_parser.add_argument('-r', '--redo', type=bool, default=False, const=True, nargs='?', help='run without re-launching prodigal and HMMER3 (for quickly re-calculating outputs with different parameters if you have already run once)')
