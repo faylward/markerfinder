@@ -30,7 +30,7 @@ The proximity of genes to merge is the number of genes up- and down-stream of th
 How many CPUs/threads to use for the hmmsearch and clustal steps
 
 **-m, --markerset**
-Markers to use. Must be comma-separated list of the following: A32,D5,SFII,mcp,mRNAc,PolB,RNAPL,RNAPS,RNR,VLTF3. The default is A32,mcp,SFII,PolB,VLTF3.
+HMM database to use. Options are "all", "ribo", "rnap" or "ribo_rnap". See README for details
 
 **-r, --redo**
 If you have already run script and you want to re-run it with different parameters, you can use the -r flag to avoid re-running HMMER (this saves a bit of time if you're running multiple times)
@@ -44,7 +44,7 @@ If this option is specified then all hits marker genes (that are above the prede
 
 
 ### Output files
-ncldv_markersearch.py provides several output files, all with the prefix designated with the -n option:
+markerfinder.py provides several output files, all with the prefix designated with the -n option:
 
 *full_output.txt         This is the main tab-delimited output file that provides the annotation results. 
 
