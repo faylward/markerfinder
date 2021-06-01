@@ -78,7 +78,9 @@ To get all hits, including "secondary hits", or second-best hits:
 To get best hits and also generate a concatenated alignment: 
 >python markerfinder.py -i test_proteins -n test_run -t 4 -c
 
-#### Example workflow for generating a tree
+  
+  
+#### Example workflow from protein files to tree
 First identify the marker genes and generate the concatenated alignment
 > python markerfinder.py -i test_proteins -n test_run -t 4 -c
   
