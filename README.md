@@ -78,7 +78,7 @@ To get all hits, including "secondary hits", or second-best hits:
 To get best hits and also generate a concatenated alignment: 
 >python markerfinder.py -i test_proteins -n test_run -t 4 -c
 
-  
+  <br/><br/>
   
 #### Example workflow from protein files to tree
 First identify the marker genes and generate the concatenated alignment
@@ -93,11 +93,12 @@ Then generate the tree with IQ-TREE, using ultrafast bootstraps and first search
 Of course there are many options with IQ-TREE - this command has worked for many of our trees, but you may wish to investigate other options on the IQ-TREE website (http://www.iqtree.org/).  
 
 <br/>
+  
 Also, sometimes it can be useful to generate a quick "diagnostic tree" just to make sure things don't look too crazy. For this you can use FastTree:
   
 >fasttree test_run.concat.gt01.aln > test_run.concat.gt01.ft.nwk
   
-  
+ <br/><br/>
   
 ### References
 
@@ -109,3 +110,9 @@ IQ-TREE: Minh et al., Mol Biol Evol., 2020 https://doi.org/10.1093/molbev/msaa01
 
 FastTree: Price et al., PLOS ONE, 2010  https://doi.org/10.1371/journal.pone.0009490
  
+Clustal Omega: Sievers and Higgens, Methods Mol. Biol., 2014  DOI:10.1007/978-1-62703-646-7_6 
+
+HMMER3: Eddy, PLOS Comp Bio., 2011  doi:10.1371/journal.pcbi.1002195. 
+  
+  
+  
