@@ -74,6 +74,31 @@ To get all hits, including "secondary hits", or second-best hits:
 To get best hits and also generate a concatenated alignment: 
 >python markerfinder.py -i test_proteins -n test_run -t 4 -c
 
+#### Example workflow for generating a tree
+First identify the marker genes and generate the concatenated alignment
+> python markerfinder.py -i test_proteins -n test_run -t 4 -c
+  
+Then trim the alignment with trimAl (this is always advisable because the raw alignment will usually have some low-quality regions):
+> trimal -in test_run.concat.aln -out test_run.concat.gt01.aln -gt 0.1
+  
+Then generate the tree with IQ-TREE, using ultrafast bootstraps and first searching for the appropriate model. 
+> iqtree -s test_run.concat.gt01.aln -m TEST -wbt -bb 1000 --runs 10
+  
+Of course there are many options with IQ-TREE - this command has worked for many of our trees, but you may wish to investigate other options on the IQ-TREE website (http://www.iqtree.org/).  
 
+Also, sometimes it can be useful to generate a quick "diagnostic tree" just to make sure things don't look too crazy. For this you can use FastTree:
+  
+fasttree test_run.concat.gt01.aln > test_run.concat.gt01.ft.nwk
+  
+  
+  
+### References
 
+For marker gene sets used: Sunagawa et al. Nature Methods, 2013 https://doi.org/10.1038/nmeth.2693
 
+For trimAl: Capella-Gutiérrez et al., Bioinformatics, 2009 https://doi.org/10.1093/bioinformatics/btp348
+  
+IQ-TREE: Minh et al., Mol Biol Evol., 2020 https://doi.org/10.1093/molbev/msaa015
+
+FastTree: Price et al., PLOS ONE, 2010  https://doi.org/10.1371/journal.pone.0009490
+ 
