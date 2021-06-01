@@ -1,14 +1,15 @@
 # markerfinder
-Script for annotating phylogenetic marker proteins for concatenated protein phylogenies.  
+This is a tool for generating concatenated alignments of phylogenetic marker genes in Bacteria and Archaea.  
 
-This script will search a file of proteins against a set of 40 curated Hidden Markov Models for phylogenetic marker genes. These markers are useful for phylogenetic analysis of both bacteria and archaea, and they have been previously described in Sunagawa et al., Nat. Methods, 2013 (https://doi.org/10.1038/nmeth.2693).
+Markerfinder will search a file of proteins against a set of 41 curated Hidden Markov Models (HMMS) for phylogenetic marker genes, or several subsets of these genes. It will also find best matches to these HMMs and use them to produce a concatenated alignment that can be used for phylogenetic inference. 
+
+In addition, the markerfinder will search for fragmented RNA Polymerase subunits and join them in silico for concatenated alignments. RNAP subunits are highly effective phylogenetic marker genes, but they are sometimes fragmented in cyanobacteria, thermophilic archaea, and other microbial lineages, which can cause problems for proper annotation and incorporation into concatenated alignments. Proteins are only joined if they are encoded on the same contig/replicon and have non-overlapping HMMER alignments to the COG0085 or COG0086 HMMs. 
 
 The program assumes protein IDs are provided in the Prodigal format (i.e., contigname_1, contigname_2, etc). 
-The program requires HMMER3 (in your PATH) and the SeqIO package of Biopython. 
-
-The program will search for fragmented RNA Polymerase subunits and join them in silico for concatenated alignments. These genes are sometimes fragmented in cyanobacteria, thermophilic archaea, and other microbial lineages, which can cause problems for proper annotation and incorporation into concatenated alignments. Proteins are only joined if they are encoded on the same contig/replicon and have non-overlapping HMMER alignments to the COG0085 or COG0086 HMMs. 
 
 There are options that allow for slightly different marker gene sets to be used. 
+
+ribo_rnap (default and recommended): 27 ribosomal proteins and 3 RNAP subunits
 
 all: all 40 marker genes
 
@@ -16,7 +17,8 @@ ribo: only 27 ribosomal proteins
 
 rnap: only 3 RNAP subunits
 
-ribo_rnap: 27 ribosomal proteins and 3 RNAP subunits
+The program requires HMMER3 and Clustal Omega (in your PATH) and the SeqIO package of Biopython. 
+
 
 
 ### MINIMAL USAGE: python markerfinder.py -i <directory of protein .faa files> -n project_name
@@ -62,6 +64,8 @@ log_file.txt          This is just a log file of some of the outputs produced by
 
 In addition, for each .faa file in the input folder a .domout and .domout.parsed file is created. These are used if you re-run this tool with the -r flag. 
 
+  
+  
 
 ### Examples
 
