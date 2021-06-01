@@ -66,13 +66,13 @@ In addition, for each .faa file in the input folder a .domout and .domout.parsed
 ### Examples
 
 To get the best hits to a set of ribosomal markers only using 4 threads. 
->python ncldv_markersearch.py -i test_input -n test_run -t 4 -m ribo
+>python markerfinder.py -i test_input -n test_run -t 4 -m ribo
 
 To get all hits, including "secondary hits", or second-best hits:
->python ncldv_markersearch.py -i test_input -n test_run -t 4 -a
+>python markerfinder.py -i test_input -n test_run -t 4 -a
 
 To get best hits and also generate a concatenated alignment: 
->python ncldv_markersearch.py -i test_input -n test_run -t 4 -c
+>python markerfinder.py -i test_input -n test_run -t 4 -c
 
 
 
