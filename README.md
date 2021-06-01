@@ -19,10 +19,10 @@ rnap: only 3 RNAP subunits
 
 The program requires HMMER3 and Clustal Omega (in your PATH) and the SeqIO package of Biopython. 
 
-
+<br/>
 
 ### MINIMAL USAGE: python markerfinder.py -i <directory of protein .faa files> -n project_name
-
+<br/>
 ### Options
 
 **-p, --proximity**
@@ -43,7 +43,7 @@ If this option is specified the script will also output a concatenated alignment
 **-a, --allhits**
 If this option is specified then all hits marker genes (that are above the predefined bit score thresholds) will be output. This option is not compatible with the -c option. This can be useful if you want to see if certain marker genes are present in multiple copies. 
 
-
+<br/>
 
 ### Output files
 markerfinder.py provides several output files, all with the prefix designated with the -n option:
@@ -65,7 +65,7 @@ log_file.txt          This is just a log file of some of the outputs produced by
 In addition, for each .faa file in the input folder a .domout and .domout.parsed file is created. These are used if you re-run this tool with the -r flag. 
 
   
-  
+  <br/>
 
 ### Examples
 
@@ -78,7 +78,7 @@ To get all hits, including "secondary hits", or second-best hits:
 To get best hits and also generate a concatenated alignment: 
 >python markerfinder.py -i test_proteins -n test_run -t 4 -c
 
-  <br/><br/>
+  <br/>
   
 #### Example workflow from protein files to tree
 First identify the marker genes and generate the concatenated alignment
@@ -98,7 +98,7 @@ Also, sometimes it can be useful to generate a quick "diagnostic tree" just to m
   
 >fasttree test_run.concat.gt01.aln > test_run.concat.gt01.ft.nwk
   
- <br/><br/>
+ <br/>
   
 ### References
 
