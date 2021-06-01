@@ -86,9 +86,10 @@ Then generate the tree with IQ-TREE, using ultrafast bootstraps and first search
   
 Of course there are many options with IQ-TREE - this command has worked for many of our trees, but you may wish to investigate other options on the IQ-TREE website (http://www.iqtree.org/).  
 
+<br/>
 Also, sometimes it can be useful to generate a quick "diagnostic tree" just to make sure things don't look too crazy. For this you can use FastTree:
   
-fasttree test_run.concat.gt01.aln > test_run.concat.gt01.ft.nwk
+>fasttree test_run.concat.gt01.aln > test_run.concat.gt01.ft.nwk
   
   
   
