@@ -82,7 +82,7 @@ Then trim the alignment with trimAl (this is always advisable because the raw al
 > trimal -in test_run.concat.aln -out test_run.concat.gt01.aln -gt 0.1
   
 Then generate the tree with IQ-TREE, using ultrafast bootstraps and first searching for the appropriate model. 
-> iqtree -s test_run.concat.gt01.aln -m TEST -wbt -bb 1000 --runs 10
+> iqtree -s test_run.concat.gt01.aln -m TEST -wbt -bb 1000 --runs 10 -nt AUTO
   
 Of course there are many options with IQ-TREE - this command has worked for many of our trees, but you may wish to investigate other options on the IQ-TREE website (http://www.iqtree.org/).  
 
