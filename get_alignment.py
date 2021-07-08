@@ -50,13 +50,13 @@ for i in os.listdir("alignments"):
 		cog = re.sub(".faa", "", i)
 		#print "Aligning and trimming "+ cog +" and adding it to the concatenated alignment"
 		cmd = "clustalo --threads 4 --force -i "+ filename +" -o "+ alignment 
-		print cmd
+		print(cmd)
 		cmd2 = shlex.split(cmd)
 		subprocess.call(cmd2, stdout=open("output.txt", "w"), stderr=open("err.txt", "w"))
 
 		seq_dict = SeqIO.to_dict(SeqIO.parse(alignment, "fasta"))
 		values = seq_dict.values()
-		first = values[0]
+		first = list(values[0])
 		length = len(first.seq)
 		
 		for taxon in taxon_set:
@@ -73,4 +73,4 @@ for i in align_dict:
 	outlist.append(record)
 
 SeqIO.write(outlist, output, "fasta")
-print "Done"
+print("Done")
